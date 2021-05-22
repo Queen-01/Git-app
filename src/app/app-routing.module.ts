@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-
+import { RepositoryComponent } from './repository/repository.component';
 const routes: Routes = [
+  {path:'', component:RepositoryComponent}
 ];
 
 @NgModule({
