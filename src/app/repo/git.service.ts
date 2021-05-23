@@ -13,7 +13,7 @@ export class GitService {
 
   constructor(private http: HttpClient) {
     this.searchUser = new Users('', '', '', 0, 0, 0, new Date());
-    this.allRepos = new Repo('', '', '', new Date());
+    this.allRepos = new Repo('', '', '', '', new Date());
   }
   repoSearch(username: string) {
     interface Response {
@@ -47,26 +47,35 @@ export class GitService {
     });
   }
 
-  getPublicRepos(username: any){
-    interface Repos{
-      name: string,
-      description: string,
-      language: string,
-      created_at: Date,
+  getPublicRepos(username: any) {
+    interface Repos {
+      name: string;
+      description: string;
+      language: string;
+      html_url: string;
+      created_at: Date;
     }
-    return new Promise<void>((resolve,reject)=>{
-      const username= 'Queen-01'
-      this.http.get<Repos>('https://api.github.com/user'+ username + '/repos?order=created&sort=asc?access_token=' + environment.apiKey).toPromise().then(
-        (results: any)=>{
-          this.allRepos= results;
-          console.log(this.allRepos);
-          resolve();
-        },
-        (error: any)=>{
-          console.log(error)
-          reject()
-        }
-      )
-    })
+    return new Promise<void>((resolve, reject) => {
+      const username = 'Queen-01';
+      this.http
+        .get<Repos>(
+          'https://api.github.com/user' +
+            username +
+            '/repos?order=created&sort=asc?access_token=' +
+            environment.apiKey
+        )
+        .toPromise()
+        .then(
+          (results: any) => {
+            this.allRepos = results;
+            console.log(this.allRepos);
+            resolve();
+          },
+          (error: any) => {
+            console.log(error);
+            reject();
+          }
+        );
+    });
   }
 }

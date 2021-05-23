@@ -7,6 +7,7 @@ import { RepositoryComponent } from './repository/repository.component';
 import { DateCountPipe } from './date-count.pipe';
 import { GitService } from './repo/git.service';
 import { UserFormComponent } from './user-form/user-form.component';
+import {FormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { UserFormComponent } from './user-form/user-form.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [GitService],
   bootstrap: [AppComponent]
