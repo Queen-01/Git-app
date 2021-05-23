@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Users } from '../users'
 import { GitService } from '../repo/git.service'
+import { Repo } from '../repo';
 @Component({
   selector: 'app-repository',
   templateUrl: './repository.component.html',
@@ -8,6 +9,7 @@ import { GitService } from '../repo/git.service'
 })
 export class RepositoryComponent implements OnInit {
   users!: Users;
+  repo!: Repo;
 
   constructor(public repoService: GitService) { }
   repoSearch(username: any){

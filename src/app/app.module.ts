@@ -5,20 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RepositoryComponent } from './repository/repository.component';
 import { DateCountPipe } from './date-count.pipe';
-import { RepositoriesComponent } from './repositories/repositories.component';
+import { GitService } from './repo/git.service';
 @NgModule({
   declarations: [
     AppComponent,
     RepositoryComponent,
     DateCountPipe,
-    RepositoriesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [GitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

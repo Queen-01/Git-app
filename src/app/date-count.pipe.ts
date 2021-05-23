@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
 @Pipe({
   name: 'dateCount',
 })
@@ -19,7 +18,7 @@ export class DateCountPipe implements PipeTransform {
       };
       let counter;
       for (let i in intervals) {
-        counter = Math.floor(seconds / intervals[i]);
+        counter = Math.floor(seconds);
         if (counter > 0)
           if (counter === 1) {
             return counter + ' ' + i + ' ago';
