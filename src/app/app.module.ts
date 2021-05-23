@@ -7,13 +7,15 @@ import { RepositoryComponent } from './repository/repository.component';
 import { DateCountPipe } from './date-count.pipe';
 import { GitService } from './repo/git.service';
 import { UserFormComponent } from './user-form/user-form.component';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component'
 @NgModule({
   declarations: [
     AppComponent,
     RepositoryComponent,
     DateCountPipe,
     UserFormComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
