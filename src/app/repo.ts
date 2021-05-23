@@ -1,8 +1,8 @@
 export class Repo {
   constructor(
     public name: string,
-    public language: string,
     public description: string,
-    public created_On: Date
-  ){};
+    public language: string,
+    public created_at: Date
+  ) {}
 }

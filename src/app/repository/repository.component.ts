@@ -20,8 +20,17 @@ export class RepositoryComponent implements OnInit {
       (error: any)=>{
       }
     )
+    this.repoService.getPublicRepos(username).then(
+      (success: any)=>{
+        this.repo = this.repoService.allRepos
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
   ngOnInit(): void {
+    this.repoSearch('Queen-01')
   }
 
 }

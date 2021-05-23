@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf='let user of users'>
       <div class="card">
         <img src="{{users.avatar_url}}" alt="">
       </div>
@@ -39,23 +39,28 @@
       </div>
     </div>
     <div>
-        <div class="heading">
-            <h1>Github Repositories.</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4" *ngFor='let repo of repo'>
-            <div class="card">
-               <div class="card-body">
-                   <h5 class="card-title">Name: {{repo.name}}</h5>
-                   <p class="card-text">Description: {{repo.description}}</p>
-                   <p class="card-text">Language: {{repo.language}}</p>
-                   <p class="card-text">Created on: {{repo.created_On | date}}</p>
 
-                   <a href="{{repo html_url}}">View repo</a>
-               </div>
-            </div>
+      <div class="text-center p-5" style="text-align: center; color: #ffffff; font-weight: bolder;">
+        <div class="heaading">
+          <h1 class="text-muted " style="font-family: 'Gabriela', serif; ">Github Repositories</h1>
         </div>
+      </div>
+      <div class="row" id="allrepos">
+        <div class="col-md-4" *ngFor="let repo of repo">
+          <div class="card" id="repo">
+            <div class="card-body">
+              <h5 class="card-title">Name: {{repo.name}}</h5>
+              <p class="card-text">Descrition: {{repo.description}}</p>
+              <p class="card-text">Language: {{repo.language}}</p>
+              <p class="card-text">created on: {{repo.created_at | date}}</p>
+
+
+              <a href="{{repo.html_url}}" _target="blank" class="btn btn-info">View repo</a>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+    </div>
