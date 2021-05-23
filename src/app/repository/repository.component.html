@@ -27,16 +27,35 @@
           </p>
 
           <p>
-              Followers:
-              {{users.followers}}
+            Followers:
+            {{users.followers}}
           </p>
 
           <p>
-              Joined:
-              {{users.created-on | date}}
+            Joined:
+            {{users.created_On | date}}
           </p>
         </div>
       </div>
+    </div>
+    <div>
+        <div class="heading">
+            <h1>Github Repositories.</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor='let repo of repo'>
+            <div class="card">
+               <div class="card-body">
+                   <h5 class="card-title">Name: {{repo.name}}</h5>
+                   <p class="card-text">Description: {{repo.description}}</p>
+                   <p class="card-text">Language: {{repo.language}}</p>
+                   <p class="card-text">Created on: {{repo.created_On | date}}</p>
+
+                   <a href="{{repo html_url}}">View repo</a>
+               </div>
+            </div>
+        </div>
     </div>
   </div>
 </div>
