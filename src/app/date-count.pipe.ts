@@ -8,7 +8,7 @@ export class DateCountPipe implements PipeTransform {
     if (value) {
       let seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
       if (seconds < 29) return 'Just now';
-      const intervals = {
+      let intervals = {
         year: 31536000,
         month: 2592000,
         week: 604800,
@@ -18,7 +18,7 @@ export class DateCountPipe implements PipeTransform {
         second: 1,
       };
       let counter;
-      for (const i in intervals) {
+      for (let i in intervals) {
         counter = Math.floor(seconds / intervals[i]);
         if (counter > 0)
           if (counter === 1) {

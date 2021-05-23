@@ -8,6 +8,6 @@ export class GitService {
   searchUser!: Users;
 
   constructor(private http:HttpClientModule) {
-    this.searchUser= new Users("", "", "", "" ,0, 0, 0, new Date)
+    this.searchUser= new Users("", "", "" ,0, 0, 0, new Date())
    }
 }
