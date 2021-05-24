@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Users } from '../users';
 import { HttpClient } from '@angular/common/http';
-import { Repo } from '../repo';
+import { Repos } from '../repository'
 import { environment } from 'src/environments/environment.prod';
 // import { environment } from "../environments/environment.prod";
 @Injectable({
@@ -9,11 +9,12 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class GitService {
   searchUser!: Users;
-  allRepos: Repo;
+  allRepos!: Repos;
 
   constructor(private http: HttpClient) {
     this.searchUser = new Users('', '', '', 0, 0, 0, new Date());
-    this.allRepos = new Repo('', '', '', '', new Date());
+    // this.allRepos = new Repos('', '', '', '', new Date());
+  
   }
   repoSearch(username: string) {
     interface Response {
@@ -27,7 +28,7 @@ export class GitService {
     return new Promise<any>((resolve, reject) => {
       this.http
         .get<Response>(
-          'https://api.github.com/user' +
+          'https://api.github.com/users/' +
             username +
             '?access_token=' +
             environment.apiKey
@@ -36,7 +37,7 @@ export class GitService {
         .then(
           (results: any) => {
             this.searchUser = results;
-            console.log(this.searchUser);
+            console.log("users console",this.searchUser);
             resolve('success');
           },
           (error: any) => {
@@ -60,7 +61,7 @@ export class GitService {
       const username = 'Queen-01';
       this.http
         .get<Repos>(
-          'https://api.github.com/user' +
+          'https://api.github.com/users/' +
             username +
             '/repos?order=created&sort=asc?access_token=' +
             environment.apiKey
@@ -69,7 +70,7 @@ export class GitService {
         .then(
           (results: any) => {
             this.allRepos = results;
-            console.log(this.allRepos);
+            console.log('repo console',this.allRepos);
             resolve('success');
           },
           (error: any) => {

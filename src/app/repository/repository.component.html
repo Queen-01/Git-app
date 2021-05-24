@@ -7,7 +7,7 @@
         <div class="col-md-6" id="imgCard">
           <div class="userimage">
             <div class="card-img-top">
-            <img style="border-radius: 30px; bottom: 20px;" src="{{users.avatar_url}}" alt="">
+            <img style="border-radius: 30px; bottom: 20px;" [src]="users.avatar_url" alt="">
             </div>
           </div>
         </div>
@@ -47,16 +47,16 @@
           </div>
         </div>
            <div class="row" id="allrepos">
-          <div class="col-md-4"*ngFor="let rep of repo">
+          <div class="col-md-4"*ngFor="let odero of oderos">
             <div class="card" id="repo">
               <div class="card-body">
-                <h5 class="card-title">Name: {{rep.name}}</h5>
-                <p class="card-text">Descrition: {{rep.description}}</p>
-                <p class="card-text">Language: {{rep.language}}</p>
-                <p class="card-text">created on: {{rep.created_at | date}}</p>
+                <h5 class="card-title">Name: {{odero.name}}</h5>
+                <p class="card-text">Descrition: {{odero.description}}</p>
+                <p class="card-text">Language: {{odero.language}}</p>
+                <p class="card-text">created on: {{odero.created_at | date}}</p>
     
       
-                <a href="{{repo.html_url}}" _target="blank" class="btn btn-info">View repo</a>
+                <a href="{{odero.html_url}}" _target="blank" class="btn btn-info">View repo</a>
     
     
               </div>
