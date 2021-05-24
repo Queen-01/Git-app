@@ -1,5 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-environment.prod.ts
+
 # compiled output
 /dist
 /tmp
@@ -44,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# api key
+  apiKey:"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"

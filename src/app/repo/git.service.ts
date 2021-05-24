@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class GitService {
   searchUser!: Users;
-  allRepos!: Repo;
+  allRepos: Repo;
 
   constructor(private http: HttpClient) {
     this.searchUser = new Users('', '', '', 0, 0, 0, new Date());
@@ -24,7 +24,7 @@ export class GitService {
       following: number;
       created_On: Date;
     }
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       this.http
         .get<Response>(
           'https://api.github.com/user' +
@@ -37,13 +37,14 @@ export class GitService {
           (results: any) => {
             this.searchUser = results;
             console.log(this.searchUser);
-            resolve();
+            resolve('success');
           },
           (error: any) => {
             console.log(error);
             reject();
           }
         );
+        return Promise
     });
   }
 
@@ -55,7 +56,7 @@ export class GitService {
       html_url: string;
       created_at: Date;
     }
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       const username = 'Queen-01';
       this.http
         .get<Repos>(
@@ -69,13 +70,14 @@ export class GitService {
           (results: any) => {
             this.allRepos = results;
             console.log(this.allRepos);
-            resolve();
+            resolve('success');
           },
           (error: any) => {
             console.log(error);
             reject();
           }
         );
+        return Promise
     });
   }
 }
