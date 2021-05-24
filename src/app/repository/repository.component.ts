@@ -1,46 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
-import { GitService } from '../repo/git.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { GithubService } from '../github.service';
 import { Repos } from '../repository';
-import { Users } from "../users";
-
-
+// import { Users } from "../users";
+import { GitService } from '../repo/git.service'
 
 @Component({
   selector: 'app-repository',
   templateUrl: './repository.component.html',
-  styleUrls: ['./repository.component.css']
+  styleUrls: ['./repository.component.css'],
 })
-
 export class RepositoryComponent implements OnInit {
+  repos!: Repos[];
+  oderos: any = [];
+  repoUser: any = '';
+  gitservice: GitService;
 
-users!: Users;
-repos: Repos= new Repos('', '', '', '', new Date());
-oderos: any=[]
-constructor( public repoService: GitService ) { }
-
-
-repoSearch(username: string){
-  this.repoService.repoSearch(username).then(
-    ( success: any)=>{
-      this.users = this.repoService.searchUser;
-    },
-    (error: any)=>{
-    }
-   )
-   this.repoService.getPublicRepos(username).then(
-     ( success: any)=>{
-      //  this.repos = this.repoService.allRepos;
-      this.oderos=this.repoService.allRepos;
-     },
-     (error: any)=>{
-       console.log(error)
-     }
-    )
- }
-ngOnInit() {
-  this.repoSearch('Queen-01');
-}
-
-
+  
+  constructor(private repoService: GithubService, gitservice: GitService) {this.gitservice= gitservice}
+  getrepository(searchItem: string) {
+    this.repoService.getPublicRepos(searchItem).subscribe((data: Repos) => {
+      this.oderos = data;
+      console.log(this.oderos);
+    });
+  }
+  ngOnInit() {
+    this.repoUser=this.gitservice.users
+    this.getrepository('Queen-01');
+    console.log(this.repoUser.login);
+  }
 }

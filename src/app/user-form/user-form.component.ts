@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GitService } from '../repo/git.service'
+// import { Repos } from '../repository'
 
 @Component({
   selector: 'app-user-form',
@@ -9,14 +10,14 @@ import { GitService } from '../repo/git.service'
 export class UserFormComponent implements OnInit {
   username: string=''
 
-  @Output() searchTerm= new EventEmitter()
+  @Output() searchItem= new EventEmitter()
   constructor(private repoService: GitService) { }
 
   ngOnInit(): void {
   }
 
   search(){
-    this.searchTerm.emit(this.username);
+    this.searchItem.emit(this.username);
     this.username = "";
   }
   

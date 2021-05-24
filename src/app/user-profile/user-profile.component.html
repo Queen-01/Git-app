@@ -1,1 +1,23 @@
-<p>user-profile works!</p>
+<app-user-form (searchItem)="getSearchItem($event)"></app-user-form>
+<div class="container-fluid pt-5 pb-5">
+    <div class="row pt-5" *ngFor='let pizza of pizza'>
+        <div class="col-md-9 ml-auto mr-auto">
+            <div class="card pt">
+                <div class="card-body d-flex flex-column align-items-center justify-content-center"> <img
+                        class="img-fluid" [src]="pizza.avatar_url" alt="Image">
+                    <h5 class="card-title pt-3">{{pizza.login}}</h5>
+                    <p>{{pizza.name}}</p>
+                    <div class="pb-5"> <span class='pl-3 badge badge-success'>Followers {{pizza.followers}}</span>
+                        <span class='pl-3 badge badge-primary'>Following {{pizza.following}}</span> <span
+                            class="pl-3 badge badge-dark">Repositories {{pizza.public_repos}}</span>
+                         </div>
+                    <div class="creation">
+                        <p>Created on {{pizza.created_at|date|uppercase}}</p>
+                    </div>
+                        <a [href]="pizza.html_url" class="card-link btn btn-primary">View profile</a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

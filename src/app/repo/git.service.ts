@@ -1,84 +1,53 @@
-import { Injectable } from '@angular/core';
 import { Users } from '../users';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Repos } from '../repository'
 import { environment } from 'src/environments/environment.prod';
-// import { environment } from "../environments/environment.prod";
+
 @Injectable({
   providedIn: 'root',
 })
 export class GitService {
-  searchUser!: Users;
-  allRepos!: Repos;
+  users: Users[] = [];
+  envronment: any;
+  userDetail: string='';
 
-  constructor(private http: HttpClient) {
-    this.searchUser = new Users('', '', '', 0, 0, 0, new Date());
-    // this.allRepos = new Repos('', '', '', '', new Date());
-  
-  }
-  repoSearch(username: string) {
-    interface Response {
+  constructor(private http: HttpClient) {}
+
+  searchUser(user: string) {
+    this.userDetail= user
+    interface data {
       name: string;
       login: string;
       avatar_url: string;
-      followers: number;
+      public_repos: number;
       following: number;
+      followers: number;
       created_On: Date;
     }
-    return new Promise<any>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+      this.users = [];
       this.http
-        .get<Response>(
-          'https://api.github.com/users/' +
-            username +
-            '?access_token=' +
-            environment.apiKey
-        )
-        .toPromise()
-        .then(
-          (results: any) => {
-            this.searchUser = results;
-            console.log("users console",this.searchUser);
-            resolve('success');
-          },
-          (error: any) => {
-            console.log(error);
-            reject();
-          }
-        );
-        return Promise
-    });
-  }
+        .get<data>(
+          'https://api.github.com/users/' + user +'?access_token=' + environment.apiKey,
 
-  getPublicRepos(username: any) {
-    interface Repos {
-      name: string;
-      description: string;
-      language: string;
-      html_url: string;
-      created_at: Date;
-    }
-    return new Promise<any>((resolve, reject) => {
-      const username = 'Queen-01';
-      this.http
-        .get<Repos>(
-          'https://api.github.com/users/' +
-            username +
-            '/repos?order=created&sort=asc?access_token=' +
-            environment.apiKey
+          // this.userDetail=Response.name,
+          // // this.user.avatar_url=Response.avatar_url,
+          // // this.users.public_repos=Response.repos_url,
+          // // this.users.name=Response.name,
+          // // this.users.followers=Response.followers,
+          // // this.users.following=Response.following,
         )
         .toPromise()
         .then(
-          (results: any) => {
-            this.allRepos = results;
-            console.log('repo console',this.allRepos);
-            resolve('success');
+          (results) => {
+            console.log(results),
+            this.users.push(results);
+            resolve('');
           },
-          (error: any) => {
-            console.log(error);
-            reject();
+          (error) => {
+            reject(console.log('Error occured'));
           }
         );
-        return Promise
     });
   }
 }
