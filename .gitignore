@@ -46,4 +46,8 @@ testem.log
 Thumbs.db
 
 # api key
+<<<<<<< HEAD
   apiKey:" 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 "
+=======
+  apiKey:" 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"
+>>>>>>> 7bd608b0df41bb04817058d1646c7838286291a4
