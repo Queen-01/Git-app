@@ -28,14 +28,14 @@ export class GitService {
       this.users = [];
       this.http
         .get<data>(
-          'https://api.github.com/users/' + user +'?access_token=' + environment.apiKey,
+          'https://api.github.com/users/' + this.userDetail +'?access_token=' + environment.apiKey,
 
           // this.userDetail=Response.name,
-          // // this.user.avatar_url=Response.avatar_url,
-          // // this.users.public_repos=Response.repos_url,
-          // // this.users.name=Response.name,
-          // // this.users.followers=Response.followers,
-          // // this.users.following=Response.following,
+          // this.user.avatar_url=Response.avatar_url,
+          // this.users.public_repos=Response.repos_url,
+          // this.users.name=Response.name,
+          // this.users.followers=Response.followers,
+          // this.users.following=Response.following,
         )
         .toPromise()
         .then(
@@ -45,7 +45,7 @@ export class GitService {
             resolve('');
           },
           (error) => {
-            reject(console.log('Error occured'));
+            reject(console.log());
           }
         );
     });

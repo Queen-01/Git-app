@@ -11,10 +11,10 @@ export class UserProfileComponent implements OnInit {
  users:Users[] =[]
  pizza!: any[];
 gitUser: string='';
+  user!: string;
   constructor(private gitService:GitService) { }
 
   getSearchItem(searchItem: string){
-    this.gitUser= searchItem
     this.gitService.searchUser(searchItem).then(
       (success: any) => {
         this.pizza = this.gitService.users
@@ -25,9 +25,22 @@ gitUser: string='';
       }
       );
   }
+
+  getSearch(search: string){
+    this.gitUser= search
+    this.gitService.searchUser(search).then(
+      (success: any)=>{
+        this.user =this.gitService.userDetail
+        console.log(this.user)
+      },
+      (error: any)=>{
+        console.log();
+      }
+    )
+  }
   ngOnInit() {
-    this.getSearchItem('username');
-    this.getSearchItem(this.gitUser)
+    this.getSearchItem('Queen-01');
+    this.getSearch(this.gitUser)
   }
 
 }

@@ -15,6 +15,7 @@ export class RepositoryComponent implements OnInit {
   repoUser: any = '';
   gitservice: GitService;
 
+
   
   constructor(private repoService: GithubService, gitservice: GitService) {this.gitservice= gitservice}
   getrepository(searchItem: string) {
@@ -23,9 +24,16 @@ export class RepositoryComponent implements OnInit {
       console.log(this.oderos);
     });
   }
+  // getRepo(search: string){
+  //   this.repoService.getRepos(search).subscribe((data: Repos) =>{
+  //     this.oderos = data;
+  //     console.log(this.oderos)
+  //   })
+  // }
   ngOnInit() {
     this.repoUser=this.gitservice.users
     this.getrepository('Queen-01');
     console.log(this.repoUser.login);
+    // this.getRepo(this.oderos.login)
   }
 }
